@@ -1,0 +1,20 @@
+{
+  "exam_title": "string",
+  "subject": "string | null",
+  "grade": "string | null",
+  "duration": "string | null",
+  "source_pages": "integer",
+  "questions": [
+    {
+      "number": "integer | string",
+      "section": "string | null",
+      "type": "multiple_choice | true_false | short_answer | essay",
+      "question": "string (LaTeX allowed)",
+      "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
+      "correct_answer": "string | null",
+      "answer_source": "key_in_document | solved_by_model | missing",
+      "explanation": "string | null",
+      "needs_review": "boolean"
+    }
+  ]
+}

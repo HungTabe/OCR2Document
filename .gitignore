@@ -1,0 +1,39 @@
+# ---------------------------------------------------------------
+# Keep only the pipeline / team pack. Everything produced by or
+# supplied for one particular case (photos, OCR, bank, prep files) is ignored.
+# ---------------------------------------------------------------
+
+# Case data: source photos and reference frames
+/Input_Folder/
+/Material-frame/
+
+# Case outputs and build leftovers
+/CCDV-P_Exam_Prep/
+/_CCDV-P_build_files/
+
+# Team pack runtime data (folders are kept via .gitkeep, contents are ignored)
+/agent-pack/team-pack/input/*
+/agent-pack/team-pack/work/*
+/agent-pack/team-pack/output/*
+!/agent-pack/team-pack/input/.gitkeep
+!/agent-pack/team-pack/work/.gitkeep
+!/agent-pack/team-pack/output/.gitkeep
+
+# Image cache created by list_images.py
+.ocr_cache/
+
+# Local Claude Code state
+/.claude/scheduled_tasks.lock
+/.claude/settings.local.json
+/.claude/projects/
+
+# Python / OS / editor noise
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+*.bak
+*.bak-*
+.idea/
+.vscode/

@@ -1,0 +1,146 @@
+{
+ "code": "CCDV-P",
+ "name": "Claude Certified Developer – Professional",
+ "exam_code": "CCDVP",
+ "kicker": "Claude Certified Developer",
+ "language": "en",
+ "items": 70,
+ "scored_items": 60,
+ "minutes": 120,
+ "pass_scaled": 720,
+ "fee_usd": 175,
+ "readiness_percent": 72,
+ "domains": {
+  "1": {
+   "en": "Advanced Agent Architecture and Orchestration",
+   "vi": "Kiến trúc agent nâng cao và điều phối",
+   "weight": 17,
+   "quota": 12
+  },
+  "2": {
+   "en": "Production Integration, Reliability, and Knowledge Grounding",
+   "vi": "Tích hợp production, độ tin cậy và knowledge grounding",
+   "weight": 20,
+   "quota": 14
+  },
+  "3": {
+   "en": "Observability and Production Monitoring",
+   "vi": "Observability và giám sát production",
+   "weight": 12,
+   "quota": 8
+  },
+  "4": {
+   "en": "Advanced Debugging and Incident Response",
+   "vi": "Debug nâng cao và xử lý sự cố",
+   "weight": 10,
+   "quota": 7
+  },
+  "5": {
+   "en": "Evaluation Engineering and Quality Assurance",
+   "vi": "Kỹ thuật đánh giá và đảm bảo chất lượng",
+   "weight": 12,
+   "quota": 8
+  },
+  "6": {
+   "en": "Cost and Latency Optimization at Scale",
+   "vi": "Tối ưu chi phí và latency ở quy mô lớn",
+   "weight": 8,
+   "quota": 6
+  },
+  "7": {
+   "en": "Runtime Guardrails and Production Security",
+   "vi": "Guardrail lúc chạy và bảo mật production",
+   "weight": 11,
+   "quota": 8
+  },
+  "8": {
+   "en": "Agent Fleet Operations for Software Delivery",
+   "vi": "Vận hành fleet agent cho phân phối phần mềm",
+   "weight": 10,
+   "quota": 7
+  }
+ },
+ "files": {
+  "blueprint": "blueprint.md",
+  "golden_rules": "golden_rules.json",
+  "research_dir": "research",
+  "official_samples": "official_samples.json"
+ },
+ "guide": {
+  "head": "head.md",
+  "modules": [
+   "d1.md",
+   "d2.md",
+   "d3_d4.md",
+   "d5_d6.md",
+   "d7.md",
+   "d8.md"
+  ],
+  "traps": "traps.md",
+  "plan": "plan.md",
+  "refs": "refs.md",
+  "golden_section": 10,
+  "bank_map_section": 12
+ },
+ "banned_terms": [
+  "OCR",
+  "photograph",
+  "blurry",
+  "reconstructed",
+  "AI-derived",
+  "independent AI",
+  "ảnh mờ"
+ ],
+ "title_short": "Certified Developer Professional",
+ "guide_label": "CCDV-P Exam Guide v1.0 (Nov 2026)",
+ "research_files": {
+  "1": "d1.md",
+  "2": "d2.md",
+  "3": "d3_d4.md",
+  "4": "d3_d4.md",
+  "5": "d5_d6.md",
+  "6": "d5_d6.md",
+  "7": "d7.md",
+  "8": "d8.md"
+ },
+ "research_groups": [
+  {
+   "domains": [
+    1
+   ],
+   "file": "d1.md"
+  },
+  {
+   "domains": [
+    2
+   ],
+   "file": "d2.md"
+  },
+  {
+   "domains": [
+    3,
+    4
+   ],
+   "file": "d3_d4.md"
+  },
+  {
+   "domains": [
+    5,
+    6
+   ],
+   "file": "d5_d6.md"
+  },
+  {
+   "domains": [
+    7
+   ],
+   "file": "d7.md"
+  },
+  {
+   "domains": [
+    8
+   ],
+   "file": "d8.md"
+  }
+ ]
+}

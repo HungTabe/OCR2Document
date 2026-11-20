@@ -1,0 +1,1 @@
+../../agent-pack/team-pack/agents/qa-extractor.md

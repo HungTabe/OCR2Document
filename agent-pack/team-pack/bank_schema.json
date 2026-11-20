@@ -1,0 +1,32 @@
+{
+  "_doc": "Question bank written by scripts/merge_bank.py to work/<exam>/bank/question_bank.json and output/<exam>/question_bank.json",
+  "exam": "string",
+  "profile": "string (profile code)",
+  "total": "integer",
+  "note": "string",
+  "items": [
+    {
+      "id": "integer (question number; official samples use 101+)",
+      "ref": "string (Bank Q<n> | Official Sample <n>)",
+      "source": "bank | official-sample",
+      "domain": "integer (domain id in the profile)",
+      "skill": "string (skill name from the blueprint)",
+      "question": "string",
+      "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
+      "correct": ["A"],
+      "pattern": { "en": "When <situation> -> <choose X> because <Y>", "vi": "string" },
+      "signals": { "en": "string", "vi": "string" },
+      "why_wins": { "en": "string", "vi": "string" },
+      "why_others": { "<wrong letter>": { "en": "string", "vi": "string" } },
+      "rules": [1],
+      "answer_review": { "verdict": "confident | uncertain", "note": "string" },
+      "repair_confidence": "high | medium | low (how complete the source wording was)",
+      "reliability": "official | ok | partial | incomplete",
+      "blind_agrees": "boolean | null (independent re-solve agrees with the keyed answer)",
+      "blind_confidence": "high | medium | low | null",
+      "blind_answer": "string | null",
+      "source_pages": ["page numbers that carry this question"],
+      "needs_review": "boolean (true for every self-collected item: answers are not from an official key)"
+    }
+  ]
+}

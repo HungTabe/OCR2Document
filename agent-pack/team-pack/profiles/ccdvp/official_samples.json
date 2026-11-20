@@ -1,0 +1,146 @@
+[
+ {
+  "id": 101,
+  "ref": "Official Sample 1",
+  "domain": 2,
+  "skill": "Reliability Engineering for Claude Services",
+  "question": "A customer-facing Claude service runs with a fallback policy that retries any failed request against a second model with exponential backoff. After a model update, the team sees an unexpected cost spike and a cluster of fallback responses that are shorter than expected. Traces show three distinct stop conditions mixed in the same retry path: rate-limit errors, responses that stopped at the maximum output length, and responses in which the model declined the request. Which change best improves reliability?",
+  "options": {
+   "A": "Increase the retry count and widen the backoff window so that more requests eventually succeed regardless of why they failed.",
+   "B": "Branch on the stop condition: back off and retry rate limits, raise the output budget on length stops, and route declined requests to a safety-handling path.",
+   "C": "Route all traffic to the fallback model permanently, since it is answering the retried requests and the primary model changed with the update.",
+   "D": "Disable the fallback entirely and return the first error to the caller so that the cost spike stops and failures become visible."
+  },
+  "correct": [
+   "B"
+  ],
+  "pattern": {
+   "en": "When one retry path mixes rate limits, length stops and refusals → branch on the stop condition because each is a different failure class.",
+   "vi": "Khi một đường retry trộn lẫn rate limit, dừng do độ dài và refusal → rẽ nhánh theo stop condition vì mỗi loại là một lớp lỗi khác nhau."
+  },
+  "signals": {
+   "en": "retries any failed request; cost spike; three distinct stop conditions in the same retry path",
+   "vi": "retry mọi request lỗi; chi phí tăng vọt; ba stop condition khác nhau trong cùng một đường retry"
+  },
+  "why_wins": {
+   "en": "Retrying a rate-limited request with backoff is right; retrying a length-stopped response reproduces the truncation and wastes tokens; retrying a declined request repeats the refusal at extra cost. The single undifferentiated retry path is the root cause.",
+   "vi": "Retry request bị rate limit bằng backoff là đúng; retry response dừng do độ dài chỉ lặp lại việc bị cắt và tốn token; retry request bị từ chối chỉ lặp lại refusal với chi phí thêm. Nguyên nhân gốc là đường retry chung không phân loại."
+  },
+  "why_others": {
+   "A": {
+    "en": "More retries amplify the cost spike and do nothing about the classification problem.",
+    "vi": "Thêm retry khuếch đại chi phí và không giải quyết vấn đề phân loại."
+   },
+   "C": {
+    "en": "Permanent rerouting trades one failure for another without fixing the root cause.",
+    "vi": "Chuyển hẳn sang model dự phòng chỉ đổi lỗi này lấy lỗi khác, không sửa nguyên nhân gốc."
+   },
+   "D": {
+    "en": "Disabling the fallback removes resilience and still leaves the classification problem.",
+    "vi": "Tắt fallback làm mất khả năng chịu lỗi và vẫn không giải quyết vấn đề phân loại."
+   }
+  },
+  "rules": [
+   1,
+   2,
+   7
+  ],
+  "source": "official-sample"
+ },
+ {
+  "id": 102,
+  "ref": "Official Sample 2",
+  "domain": 5,
+  "skill": "LLM-as-Judge Engineering",
+  "question": "A team gates prompt releases with an LLM-as-judge evaluator that compares the new response to the current production response and picks the better one. Over several weeks, every candidate prompt passes, yet user-reported quality has not improved. A sample of judge verdicts shows the judge agrees with human raters on only slightly more than half of the pairs, and it selects whichever response appears first far more often than the humans do. Which action should the team take first?",
+  "options": {
+   "A": "Replace pairwise comparison with absolute scoring on a fixed rubric so the judge never sees two responses side by side.",
+   "B": "Switch the judge to a larger, more capable model, since a stronger model will agree with human raters more often.",
+   "C": "Randomize response order, re-measure agreement against the human labels, and withhold gating authority until agreement is acceptable.",
+   "D": "Lower the pass threshold so the gate becomes more sensitive to the small improvements each candidate prompt introduces."
+  },
+  "correct": [
+   "C"
+  ],
+  "pattern": {
+   "en": "When a judge shows position bias and weak agreement with humans → control the bias, recalibrate against human labels and withhold gating authority.",
+   "vi": "Khi judge có position bias và độ khớp với con người thấp → kiểm soát bias, hiệu chỉnh lại theo nhãn của con người và chưa trao quyền chặn phát hành."
+  },
+  "signals": {
+   "en": "every candidate passes; quality has not improved; agrees with humans only slightly over half; picks the first response far more often",
+   "vi": "mọi candidate đều đạt; chất lượng không cải thiện; chỉ khớp con người hơn một nửa chút ít; chọn response đứng đầu nhiều hơn hẳn"
+  },
+  "why_wins": {
+   "en": "The evidence shows position bias and poor agreement, so the judge's verdicts are not yet trustworthy. First control the bias, re-calibrate on the human-labelled set and withhold gating authority until agreement is acceptable.",
+   "vi": "Bằng chứng cho thấy position bias và độ khớp kém nên kết luận của judge chưa đáng tin. Việc đầu tiên là kiểm soát bias, hiệu chỉnh lại trên tập có nhãn của con người và chưa trao quyền chặn phát hiện cho đến khi độ khớp đạt yêu cầu."
+  },
+  "why_others": {
+   "A": {
+    "en": "A different scoring format may help later but does not establish calibration.",
+    "vi": "Đổi cách chấm có thể giúp về sau nhưng không thiết lập được hiệu chỉnh."
+   },
+   "B": {
+    "en": "A larger judge does not by itself establish calibration or remove position bias.",
+    "vi": "Judge lớn hơn không tự thiết lập hiệu chỉnh hay loại bỏ position bias."
+   },
+   "D": {
+    "en": "Lowering the threshold makes an uncalibrated gate more permissive.",
+    "vi": "Hạ ngưỡng làm cổng chưa hiệu chỉnh dễ dãi hơn."
+   }
+  },
+  "rules": [
+   22,
+   21,
+   23
+  ],
+  "source": "official-sample"
+ },
+ {
+  "id": 103,
+  "ref": "Official Sample 3",
+  "domain": 7,
+  "skill": "Threat Defense and Adversarial Testing for Agentic Systems",
+  "question": "An internal support agent reads customer tickets, has access to a CRM containing account details, and can send email through a tool. A red-team exercise shows that a ticket containing hidden instructions can cause the agent to look up another customer's record and email it to an external address. The team has already added a system prompt instruction telling the model to ignore instructions found in tickets. Which additional control most directly closes the exploit path?",
+  "options": {
+   "A": "Enforce recipient allowlisting or human approval on the email tool, and scope CRM access to the ticket's own account.",
+   "B": "Add a stronger system prompt warning that exfiltrating customer data is prohibited and that ticket content must never be treated as instructions.",
+   "C": "Reduce the model's effort level so that it is less likely to follow multi-step instructions embedded in ticket content.",
+   "D": "Log every email the agent sends, including recipient and attachments, so that any exfiltration can be investigated after the fact."
+  },
+  "correct": [
+   "A"
+  ],
+  "pattern": {
+   "en": "When an agent combines private data, untrusted input and an external channel → enforce deterministic controls outside the model.",
+   "vi": "Khi agent kết hợp dữ liệu riêng tư, input không tin cậy và kênh gửi ra ngoài → thực thi kiểm soát tất định ở ngoài model."
+  },
+  "signals": {
+   "en": "reads tickets; CRM access; can send email; hidden instructions; prompt instruction already added",
+   "vi": "đọc ticket; truy cập CRM; gửi được email; chỉ dẫn ẩn; đã có chỉ dẫn trong prompt"
+  },
+  "why_wins": {
+   "en": "The agent combines private data access, untrusted input and an external communication channel, so prompt-level instructions cannot be relied on. A deterministic control outside the model (recipient allowlisting, approval for external sends, least-privilege data scoping) closes the demonstrated path whatever the injected text says.",
+   "vi": "Agent kết hợp truy cập dữ liệu riêng tư, input không tin cậy và kênh giao tiếp ra ngoài nên không thể dựa vào chỉ dẫn trong prompt. Kiểm soát tất định ở ngoài model (allowlist người nhận, phê duyệt khi gửi ra ngoài, giới hạn dữ liệu theo least privilege) đóng đường khai thác đã được chứng minh dù text bị inject nói gì."
+  },
+  "why_others": {
+   "B": {
+    "en": "A stronger prompt is not an enforceable boundary.",
+    "vi": "Prompt mạnh hơn không phải ranh giới có thể thực thi."
+   },
+   "C": {
+    "en": "Reducing effort does not remove the capability.",
+    "vi": "Giảm effort không loại bỏ khả năng thực hiện."
+   },
+   "D": {
+    "en": "Logging detects after the fact; it does not prevent.",
+    "vi": "Log chỉ phát hiện sau khi sự việc xảy ra, không ngăn chặn."
+   }
+  },
+  "rules": [
+   5,
+   3,
+   4
+  ],
+  "source": "official-sample"
+ }
+]

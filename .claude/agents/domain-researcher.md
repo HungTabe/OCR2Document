@@ -1,0 +1,1 @@
+../../agent-pack/team-pack/agents/domain-researcher.md

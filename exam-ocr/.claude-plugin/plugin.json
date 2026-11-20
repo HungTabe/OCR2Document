@@ -1,0 +1,6 @@
+{
+  "name": "exam-ocr",
+  "version": "0.1.0",
+  "description": "Read a folder of exam-paper photos, OCR them with Claude vision, and compile one clean Word/Markdown document.",
+  "author": { "name": "Teacher" }
+}
